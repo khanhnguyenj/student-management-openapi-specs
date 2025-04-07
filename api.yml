@@ -18,7 +18,15 @@ paths:
                 type: array
                 items: 
                   $ref: '#/components/schemas/GetAllStudentsResponse'
-              example: [{ "id": 1, "code": "001", "name": "Khanh" }, { "id": 2, "code": "002", "name": "Quan" }]
+              example: 
+                success: true
+                data:
+                  - id: 1
+                    code: "001"
+                    name: "Khanh"
+                  - id: 2
+                    code: "002"
+                    name: "Quan"
         "400":
           description: Bad Request
         "500":
@@ -41,7 +49,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetStudentByIdResponse'
-              example: { "id": 1, "code": "001", "name": "Khanh" }
+              example:
+                success: true
+                data:
+                  id: 1
+                  code: "001"
+                  name: Khanh
     delete:
       operationId: deleteStudentById
       summary: Delete a student by Id
@@ -59,7 +72,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Response'
-              example: { "message": "Student deleted!"}
+              example: 
+                success: true
+                messsage: Student deleted!
         "400":
           description: Bad Request
           content:
