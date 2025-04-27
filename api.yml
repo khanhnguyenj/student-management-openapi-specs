@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.1.0
 info:
   title: Student Management System
   version: 1.0.0
@@ -16,21 +16,12 @@ paths:
             application/json:
               schema:
                 type: array
-                items: 
+                items:
                   $ref: '#/components/schemas/GetAllStudentsResponse'
-              example: 
-                success: true
-                data:
-                  - id: 1
-                    code: "001"
-                    name: "Khanh"
-                  - id: 2
-                    code: "002"
-                    name: "Quan"
         "400":
-          description: Bad Request
+          $ref: "./components/responses/400.yml"
         "500":
-          description: Internal Server Error
+          $ref: "./components/responses/500.yml"
   /students/{id}:
     get:
       operationId: getStudentById
@@ -49,12 +40,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetStudentByIdResponse'
-              example:
-                success: true
-                data:
-                  id: 1
-                  code: "001"
-                  name: Khanh
+        "400":
+          $ref: "./components/responses/400.yml"
+        "500":
+          $ref: "./components/responses/500.yml"
     delete:
       operationId: deleteStudentById
       summary: Delete a student by Id
@@ -71,22 +60,14 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Response'
-              example: 
+                $ref: './components/schemas/response.yml'
+              example:
                 success: true
-                messsage: Student deleted!
+                message: Student deleted!
         "400":
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/BadRequest'
+          $ref: "./components/responses/400.yml"
         "500":
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/InternalServerError'
+          $ref: "./components/responses/500.yml"
 components:
   schemas:
     Student:
@@ -95,14 +76,17 @@ components:
         id:
           type: integer
           format: int64
+          example: 1
         code:
           type: string
+          example: 1234
         name:
           type: string
+          example: Khanh
     GetAllStudentsResponse:
       type: object
       allOf:
-        - $ref: '#/components/schemas/Response'
+        - $ref: './components/schemas/response.yml'
       properties:
         data:
           type: array
@@ -111,26 +95,8 @@ components:
     GetStudentByIdResponse:
       type: object
       allOf:
-        - $ref: '#/components/schemas/Response'
+        - $ref: './components/schemas/response.yml'
       properties:
         data:
-          type: object
-          $ref: '#/components/schemas/Student'      
-    Response:
-      type: object
-      required:
-        - success
-      properties:
-        success:
-          type: boolean
-        message:
-          type: string
-    InternalServerError:
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/Response'
-    BadRequest:
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/Response'
+          $ref: '#/components/schemas/Student'
         
