@@ -2,4 +2,4 @@ description: Bad Request
 content:
   application/json:
     schema:
-      $ref: '../schemas/badRequest.yml'
+      $ref: '../schemas/badRequest.yml#/BadRequest'

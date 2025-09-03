@@ -1,3 +1,4 @@
-type: object
-allOf:
-  - $ref: './response.yml'
+BadRequest:
+  type: object
+  allOf:
+    - $ref: './response.yml#/Response'

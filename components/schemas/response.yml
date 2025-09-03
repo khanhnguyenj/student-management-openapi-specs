@@ -1,8 +1,9 @@
-type: object
-required:
-  - success
-properties:
-  success:
-    type: boolean
-  message:
-    type: string
+Response:
+  type: object
+  required:
+    - success
+  properties:
+    success:
+      type: boolean
+    message:
+      type: string
