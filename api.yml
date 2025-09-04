@@ -39,6 +39,24 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "500":
           $ref: "#/components/responses/InternalServerError"
+    put:
+      operationId: updateStudent
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Student"
+      responses:
+        "200":
+          description: Update student
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateStudentResponse'
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
   /students/{id}:
     get:
       operationId: getStudentById
@@ -123,7 +141,13 @@ components:
       properties:
         data:
           $ref: '#/components/schemas/Student'
-
+    UpdateStudentResponse:
+      type: object
+      allOf:
+        - $ref: './components/schemas/response.yml#/Response'
+      properties:
+        data:
+          $ref: '#/components/schemas/Student'
   responses:
     BadRequest:
       $ref: "./components/responses/400.yml"
